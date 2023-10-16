@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/board?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: rootpass
+    driver-class-name: com.mysql.cj.jdbc.Driver
