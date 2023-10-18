@@ -1,6 +1,8 @@
 package com.choimax0926.boardbackend.controller;
 
 import com.choimax0926.boardbackend.entity.Post;
+import com.choimax0926.boardbackend.exception.ApiException;
+import com.choimax0926.boardbackend.exception.Error;
 import com.choimax0926.boardbackend.response.ApiResponse;
 import com.choimax0926.boardbackend.service.PostService;
 import lombok.RequiredArgsConstructor;
