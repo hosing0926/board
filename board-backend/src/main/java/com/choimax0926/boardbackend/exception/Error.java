@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Error {
+
+    EMPTY_PARAM(1000, "empty param")
     ;
 
     private final int code;

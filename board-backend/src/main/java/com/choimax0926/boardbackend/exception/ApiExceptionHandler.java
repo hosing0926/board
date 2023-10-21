@@ -14,7 +14,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<ApiErrorResponse> handleException(HttpServletRequest request, ApiException error) {
-        log.error("error [code: {}, message:{}, path:{}]", error.getCode(), error.getMessage(), request.getRequestURI());
+        log.error("API ERROR [code: {}, message:{}, path:{}]", error.getCode(), error.getMessage(), request.getRequestURI());
 
         return ResponseEntity.ok(ApiErrorResponse.builder()
                 .error(error)
