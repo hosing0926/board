@@ -1,9 +1,22 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { useState, useEffect } from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
+  const [board, setBoard] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const {data} = await (await fetch(`http://localhost:8080/post?page=1&size=8`)).json();
+      console.log(data)
+      setBoard(data);
+    })();
+  }, []);
+
+  if (!board) {
+    return <div>Loading data...</div>;
+  }
+
   return (
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
