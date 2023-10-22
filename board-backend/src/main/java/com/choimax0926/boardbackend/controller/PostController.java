@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping("/post")
@@ -22,6 +24,16 @@ public class PostController {
     @GetMapping
     public ApiResponse getPosts() {
         List<Post> posts = postService.getPosts();
+
+        if (posts.size() == 0) {
+            Post post = Post.builder()
+                    .postId(1L)
+                    .title("title test")
+                    .content("const test")
+                    .createDate(LocalDateTime.now()).build();
+
+            posts = Arrays.asList(post);
+        }
 
         return ApiResponse.builder()
                 .data(posts)
