@@ -1,6 +1,7 @@
 package com.choimax0926.boardbackend.controller;
 
 import com.choimax0926.boardbackend.entity.Post;
+import com.choimax0926.boardbackend.entity.PostLike;
 import com.choimax0926.boardbackend.exception.ApiException;
 import com.choimax0926.boardbackend.exception.Error;
 import com.choimax0926.boardbackend.response.ApiResponse;
@@ -30,9 +31,10 @@ public class PostController {
                     .postId(1L)
                     .title("title test")
                     .content("const test")
+                    .likes(Arrays.asList(new PostLike()))
                     .createDate(LocalDateTime.now()).build();
 
-            posts = Arrays.asList(post);
+            posts = Arrays.asList(post,post,post,post,post,post,post,post,post);
         }
 
         return ApiResponse.builder()
