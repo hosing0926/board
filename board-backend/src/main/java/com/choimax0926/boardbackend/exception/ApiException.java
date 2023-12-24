@@ -1,5 +1,6 @@
 package com.choimax0926.boardbackend.exception;
 
+import com.choimax0926.boardbackend.exception.constant.Error;
 import lombok.Getter;
 import lombok.Setter;
 

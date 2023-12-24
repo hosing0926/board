@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+
+  redis:
+    host: # host
+    port: 6379
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: # url
+    username: # username
+    password: # password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: # username
+    password: # password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+
+jwt.secret: #secret key
+jwt.accessToken.duration: 1800000 # 30 minutes
+jwt.refreshToken.duration: 604800000 # 7 days
+jwt.email.auth.duration: 600000 # 10 minutes
