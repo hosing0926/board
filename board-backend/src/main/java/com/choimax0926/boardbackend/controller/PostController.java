@@ -1,19 +1,12 @@
 package com.choimax0926.boardbackend.controller;
 
+import com.choimax0926.boardbackend.dto.PageDto;
 import com.choimax0926.boardbackend.entity.Post;
-import com.choimax0926.boardbackend.entity.PostLike;
-import com.choimax0926.boardbackend.exception.ApiException;
-import com.choimax0926.boardbackend.exception.Error;
+import com.choimax0926.boardbackend.request.PostRequest;
 import com.choimax0926.boardbackend.response.ApiResponse;
 import com.choimax0926.boardbackend.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/post")
 @RequiredArgsConstructor
@@ -23,22 +16,27 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ApiResponse getPosts() {
-        List<Post> posts = postService.getPosts();
-
-        if (posts.size() == 0) {
-            Post post = Post.builder()
-                    .postId(1L)
-                    .title("title test")
-                    .content("const test")
-                    .likes(Arrays.asList(new PostLike()))
-                    .createDate(LocalDateTime.now()).build();
-
-            posts = Arrays.asList(post,post,post,post,post,post,post,post,post);
-        }
+    public ApiResponse getPosts(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Long userId = 1L;
+        PageDto<Post> posts = postService.getPosts(page, size);
 
         return ApiResponse.builder()
                 .data(posts)
+                .build();
+    }
+
+    @PostMapping
+    public ApiResponse createPost(
+            @RequestPart(required = false) PostRequest request
+    ) {
+        Long userId = 1L;
+        Post post = postService.createPost(userId, request);
+
+        return ApiResponse.builder()
+                .data(post)
                 .build();
     }
 }

@@ -22,13 +22,11 @@ public class PostReport {
 
     @MapsId("postId")
     @ManyToOne
-    @JoinColumn(name = "post_id")
     private Post post;
 
     @MapsId("userId")
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User actor;
+    private User user;
 
     @CreatedDate
     private LocalDateTime createDate;

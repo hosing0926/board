@@ -1,14 +1,13 @@
 package com.choimax0926.boardbackend.entity;
 
+import com.choimax0926.boardbackend.entity.constant.Date;
 import com.choimax0926.boardbackend.entity.constant.PostStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Post {
+public class Post extends Date {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     private String title;
@@ -38,7 +36,4 @@ public class Post {
 
     @Enumerated(EnumType.ORDINAL)
     private PostStatus status;
-
-    @CreatedDate
-    private LocalDateTime createDate;
 }

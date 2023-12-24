@@ -1,5 +1,6 @@
 package com.choimax0926.boardbackend.entity;
 
+import com.choimax0926.boardbackend.entity.constant.Date;
 import com.choimax0926.boardbackend.entity.constant.LoginType;
 import com.choimax0926.boardbackend.entity.constant.UserStatus;
 import lombok.AllArgsConstructor;
@@ -16,12 +17,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Entity
-public class User {
+public class User extends Date {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
     private LoginType type;
 
     private String email;
@@ -30,11 +30,7 @@ public class User {
 
     private String nickname;
 
-    private String avatar;
+    private int imageCount;
 
-    @Enumerated(EnumType.ORDINAL)
     private UserStatus status;
-
-    @CreatedDate
-    private LocalDateTime createDate;
 }
